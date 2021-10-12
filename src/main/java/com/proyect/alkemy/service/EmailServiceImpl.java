@@ -8,22 +8,20 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-@Slf4j
 @Service
 public class EmailServiceImpl implements EmailService {
 
-    private String emailSender = "${EMAIL}";
+    private String emailSender = System.getenv("MAIL");
 
 
     @Override
     public void sendWelcomeEmailTo(String to) {
 
-        String apiKey = "${API_KEY}";
+        String apiKey = System.getenv("API_KEY");
 
         Email fromEmail = new Email(emailSender);
         Email toEmail = new Email(to);
